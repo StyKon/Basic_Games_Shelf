@@ -1,0 +1,12 @@
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\bin\Debug\net6.0\Basic Games Shelf.DOMAINE.deps.json
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\bin\Debug\net6.0\Basic Games Shelf.DOMAINE.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\bin\Debug\net6.0\Basic Games Shelf.DOMAINE.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.csproj.AssemblyReference.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.AssemblyInfoInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.AssemblyInfo.cs
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.csproj.CoreCompileInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\refint\Basic Games Shelf.DOMAINE.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\Basic Games Shelf.DOMAINE.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DOMAINE\obj\Debug\net6.0\ref\Basic Games Shelf.DOMAINE.dll

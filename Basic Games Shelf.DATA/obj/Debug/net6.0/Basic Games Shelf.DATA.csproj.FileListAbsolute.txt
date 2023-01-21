@@ -1,0 +1,15 @@
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DATA.deps.json
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DATA.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DATA.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DOMAINE.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DOMAINE.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.csproj.AssemblyReference.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.AssemblyInfoInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.AssemblyInfo.cs
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.csproj.CoreCompileInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.csproj.CopyComplete
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\refint\Basic Games Shelf.DATA.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\ref\Basic Games Shelf.DATA.dll

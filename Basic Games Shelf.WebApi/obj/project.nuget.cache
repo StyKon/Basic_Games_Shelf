@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "9HBgrM+uXG0a9Zo/k6UoZZwKsWGf4FCrEneAVnpnKHMX1HQ7yIZB612pE9XcDJP096LA16n170UNUN+V6qU7bA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.WebApi\\Basic Games Shelf.WebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\StyKon\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\StyKon\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\StyKon\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\StyKon\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\StyKon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\StyKon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
