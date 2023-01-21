@@ -2299,7 +2299,9 @@
       },
       "Basic Games Shelf.DATA/1.0.0": {
         "dependencies": {
-          "Basic Games Shelf.DOMAINE": "1.0.0"
+          "Basic Games Shelf.DOMAINE": "1.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.13",
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.13"
         },
         "runtime": {
           "Basic Games Shelf.DATA.dll": {}

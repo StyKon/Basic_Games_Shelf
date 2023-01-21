@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Basic_Games_Shelf.WebApi.Migrations
+namespace Basic_Games_Shelf.DATA.Migrations
 {
     public partial class BasicGamesShelfMigration : Migration
     {

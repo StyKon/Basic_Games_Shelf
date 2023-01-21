@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Basic_Games_Shelf.DOMAINE;
-using Basic_Games_Shelf.WebApi.Data;
+using Basic_Games_Shelf.DATA;
+using Basic_Games_Shelf.DATA.IServices;
 
 namespace Basic_Games_Shelf.WebApi.Controllers
 {
@@ -14,32 +15,27 @@ namespace Basic_Games_Shelf.WebApi.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
+        private readonly IGamesService _gamesService;
         private readonly BasicGamesShelfContext _context;
 
-        public GamesController(BasicGamesShelfContext context)
+        public GamesController(IGamesService gamesService, BasicGamesShelfContext _context)
         {
-            _context = context;
+            _gamesService = gamesService;
+            this._context = _context;
         }
 
         // GET: api/Games
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Games>>> GetGames()
         {
-            return await _context.Games.ToListAsync();
+            return Ok(await _gamesService.GetGames());
         }
 
         // GET: api/Games/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Games>> GetGames(int id)
         {
-            var games = await _context.Games.FindAsync(id);
-
-            if (games == null)
-            {
-                return NotFound();
-            }
-
-            return games;
+            return Ok(await _gamesService.GetGames(id));
         }
 
         // PUT: api/Games/5
@@ -47,62 +43,31 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGames(int id, Games games)
         {
-            if (id != games.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(games).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GamesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(await _gamesService.PutGames(id, games));
         }
 
         // POST: api/Games
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Games>> PostGames(Games games)
+        public async Task<IEnumerable<Games>> PostGames([FromBody] IEnumerable<Games> games)
         {
-            _context.Games.Add(games);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetGames", new { id = games.Id }, games);
+            foreach (var game in games)
+            {
+                await _gamesService.PostGames(game);
+            }
+            return (IEnumerable<Games>)Ok(games);
         }
 
         // DELETE: api/Games/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGames(int id)
         {
-            var games = await _context.Games.FindAsync(id);
-            if (games == null)
-            {
-                return NotFound();
-            }
-
-            _context.Games.Remove(games);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(await _gamesService.DeleteGames(id));
         }
 
         private bool GamesExists(int id)
         {
-            return _context.Games.Any(e => e.Id == id);
+            return _gamesService.GamesExists(id);
         }
     }
 }

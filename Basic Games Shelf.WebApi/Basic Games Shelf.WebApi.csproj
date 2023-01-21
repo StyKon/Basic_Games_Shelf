@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Basic Games Shelf.DATA\Basic Games Shelf.DATA.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

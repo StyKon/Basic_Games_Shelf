@@ -13,3 +13,5 @@ C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\
 C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\refint\Basic Games Shelf.DATA.dll
 C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.pdb
 C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\ref\Basic Games Shelf.DATA.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\bin\Debug\net6.0\Basic Games Shelf.DATA.runtimeconfig.json
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATA\obj\Debug\net6.0\Basic Games Shelf.DATA.genruntimeconfig.cache
