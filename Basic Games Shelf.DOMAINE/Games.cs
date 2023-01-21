@@ -11,7 +11,6 @@ namespace Basic_Games_Shelf.DOMAINE
         public string Game { get; set; }
         public int PlayTime { get; set; }
         public string Genre { get; set; }
-        public string[] Platforms { get; set; }
 
     }
 }

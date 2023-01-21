@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Basic_Games_Shelf.WebApi.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BasicGamesShelfContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BasicGamesShelfContext") ?? throw new InvalidOperationException("Connection string 'BasicGamesShelfContext' not found.")));
 
 // Add services to the container.
 
