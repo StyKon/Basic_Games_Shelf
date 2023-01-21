@@ -1,0 +1,12 @@
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\bin\Debug\net6.0\Basic Games Shelf.DATATEST.deps.json
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\bin\Debug\net6.0\Basic Games Shelf.DATATEST.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\bin\Debug\net6.0\Basic Games Shelf.DATATEST.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.csproj.AssemblyReference.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.AssemblyInfoInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.AssemblyInfo.cs
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.csproj.CoreCompileInputs.cache
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\refint\Basic Games Shelf.DATATEST.dll
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\Basic Games Shelf.DATATEST.pdb
+C:\Users\StyKon\source\repos\Clean\Basic Games Shelf\Basic Games Shelf.DATATEST\obj\Debug\net6.0\ref\Basic Games Shelf.DATATEST.dll
