@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Basic_Games_Shelf.DOMAINE;
 using Basic_Games_Shelf.DATA;
 using Basic_Games_Shelf.DATA.IServices;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Basic_Games_Shelf.DATA.Result;
+using Basic_Games_Shelf.DATA.Dto;
 
 namespace Basic_Games_Shelf.WebApi.Controllers
 {
@@ -28,6 +25,23 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         // GET: api/Games
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Games>>> GetGames()
+        {
+            IEnumerable<Games> games = await _gamesService.GetGames();
+            IEnumerable <GamesDTO> gamesDTO =
+            games.Select(x => new GamesDTO
+            {
+                UserId = x.UserId,
+                Game = x.Game,
+                Genre = x.Genre,
+                Platforms = x.Platforms,    
+                PlayTime = x.PlayTime
+            })
+                            .ToList();
+            return Ok(gamesDTO);
+        }
+        // GET: api/Games/GamesWithDetails
+        [HttpGet("GamesWithDetails")]
+        public async Task<ActionResult<IEnumerable<Games>>> GetGamesWithDetails()
         {
             return Ok(await _gamesService.GetGames());
         }
@@ -118,16 +132,7 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpGet("select_top_by_players")]
         public async Task<ActionResult<Games>> GetTopPlayedGameByUsers([BindRequired] string genre, [BindRequired] string platform)
         {
-            var games = await _context.Games.ToListAsync();
-            var gamesFiltred = games.Where(x => x.Genre.ToLower() == genre.ToLower() && x.Platforms.Contains(platform));
-            var gameGroupByGameName = gamesFiltred.GroupBy(i => i.Game.ToLower());
-
-
-            var gameusers = gameGroupByGameName.Select(g => new { name = g.Key, count = g.Count() }); ;
-            var maxUsers = gameusers.MaxBy(u => u.count);
-            var mostPlayedGames = gameusers.Where(s => s.count == maxUsers.count).ToList();
-
-
+            var mostPlayedGames= await _gamesService.GetTopPlayedGameByUsers(genre, platform);
 
             if (mostPlayedGames == null)
             {

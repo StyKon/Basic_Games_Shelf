@@ -1,5 +1,7 @@
 ﻿
 using Basic_Games_Shelf.DATA.IServices;
+using Basic_Games_Shelf.DATA.Response;
+using Basic_Games_Shelf.DATA.Result;
 using Basic_Games_Shelf.DOMAINE;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +14,7 @@ namespace Basic_Games_Shelf.DATA.Services
         {
             this._context = _context;
         }
-        public async Task<Games> DeleteGames(int id)
+        public async Task<Games?> DeleteGames(int id)
         {
             var games = await _context.Games.FindAsync(id);
             if (games == null)
@@ -31,7 +33,7 @@ namespace Basic_Games_Shelf.DATA.Services
             return _context.Games.Any(e => e.Id == id);
         }
 
-        public async Task<Games> GetGames(int id)
+        public async Task<Games?> GetGames(int id)
         {
             var games = await _context.Games.FindAsync(id);
 
@@ -49,7 +51,7 @@ namespace Basic_Games_Shelf.DATA.Services
             GamesResult gameResult = new GamesResult();
             if (GamesNameExist(games))
             {
-                ValidInput=PlatformsAreTheSame(games);
+                ValidInput = PlatformsAreTheSame(games);
                 gameResult.Message = "You Cannot Add this game with different platforms";
                 if (ValidInput)
                 {
@@ -61,7 +63,7 @@ namespace Basic_Games_Shelf.DATA.Services
             {
                 _context.Games.Add(games);
                 await _context.SaveChangesAsync();
-                gameResult.Games=games;
+                gameResult.Games = games;
                 gameResult.Message = "Games Added Successfully";
                 return gameResult;
             }
@@ -70,7 +72,7 @@ namespace Basic_Games_Shelf.DATA.Services
             return gameResult;
         }
 
-       
+
 
         public async Task<GamesResult> PutGames(int id, Games games)
         {
@@ -82,7 +84,7 @@ namespace Basic_Games_Shelf.DATA.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                    throw;
+                throw;
             }
             GamesResult gameResult = new GamesResult()
             {
@@ -100,7 +102,7 @@ namespace Basic_Games_Shelf.DATA.Services
 
         private bool PlatformsAreTheSame(Games games)
         {
-            Games FoundedGames = _context.Games.Where(g => g.Game.ToLower() == games.Game.ToLower()).FirstOrDefault();
+            Games? FoundedGames = _context.Games.Where(g => g.Game.ToLower() == games.Game.ToLower()).FirstOrDefault();
             bool arraysAreEqual = Enumerable.SequenceEqual(games.Platforms, FoundedGames.Platforms);
             return arraysAreEqual;
         }
@@ -109,6 +111,41 @@ namespace Basic_Games_Shelf.DATA.Services
         {
             bool FoundedGames = _context.Games.Where(g => g.Game.ToLower() == games.Game.ToLower()).Any();
             return FoundedGames;
+        }
+
+        public Task<IEnumerable<GamesResponse>> GetTopPlayedGamesByPlayTime(string genre, string platform)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<GamesResponse>> GetTopPlayedGameByUsers(string genre, string platform)
+        {
+            var games = await _context.Games.ToListAsync();
+            var gamesFiltred = games.Where(x => x.Genre.ToLower() == genre.ToLower() && x.Platforms.Contains(platform));
+            var gameGroupByGameName = gamesFiltred.GroupBy(i => i.Game.ToLower());
+
+
+            var gameusers = gameGroupByGameName.Select(g => new
+            {
+                Game = g.Key,
+                Genre = genre,
+                Platforms = g.Select(p => p.Platforms).First(),
+                TotalPlayTime = g.Sum(w => w.PlayTime),
+                TotalPlayers = g.Count(),
+            });
+            var maxUsers = gameusers.MaxBy(u => u.TotalPlayers);
+            var mostPlayedGames = gameusers.Where(s => s.TotalPlayers == maxUsers.TotalPlayers).ToList();
+            IEnumerable<GamesResponse> gamesResponse = mostPlayedGames.Select(x => new GamesResponse
+            {
+                Game = x.Game,
+                Genre = x.Genre,
+                Platforms = x.Platforms,
+                TotalPlayers = x.TotalPlayers,
+                TotalPlayTime = x.TotalPlayTime,
+            });
+            return gamesResponse;
+
+
         }
     }
 }

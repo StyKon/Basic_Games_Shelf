@@ -1,21 +1,14 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace Basic_Games_Shelf.DOMAINE
+namespace Basic_Games_Shelf.DATA.Dto
 {
-    public class Games
+    public class GamesDTO
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
         public int UserId { get; set; }
-        [Required]
         public string Game { get; set; }
-        [Required]
         public int PlayTime { get; set; }
-        [Required]
         public string Genre { get; set; }
-        [Required]
         public string[] Platforms { get; set; }
 
     }
