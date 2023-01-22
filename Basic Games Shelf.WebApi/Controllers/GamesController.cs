@@ -93,6 +93,19 @@ namespace Basic_Games_Shelf.WebApi.Controllers
             }
             return CreatedAtAction("GetGames", new { id = games.Id }, games);
         }
+        // POST: api/Games/AddMultipleGames
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("AddMultipleGames")]
+        public async Task<ActionResult<IEnumerable<GamesResult>>> PostMultipleGames(IEnumerable<Games> games)
+        {
+            var gamesResults = new List<GamesResult>();
+            foreach (var game in games)
+            {
+                gamesResults.Add(await _gamesService.PostGames(game));
+            }
+          
+            return Ok(gamesResults);
+        }
 
         // DELETE: api/Games/5
         [HttpDelete("{id}")]
