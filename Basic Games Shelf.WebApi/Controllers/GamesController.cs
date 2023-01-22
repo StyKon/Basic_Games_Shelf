@@ -6,6 +6,7 @@ using Basic_Games_Shelf.DATA.IServices;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Basic_Games_Shelf.DATA.Result;
 using Basic_Games_Shelf.DATA.Dto;
+using Basic_Games_Shelf.DATA.Response;
 
 namespace Basic_Games_Shelf.WebApi.Controllers
 {
@@ -24,7 +25,7 @@ namespace Basic_Games_Shelf.WebApi.Controllers
 
         // GET: api/Games
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Games>>> GetGames()
+        public async Task<ActionResult<IEnumerable<GamesDTO>>> GetGames()
         {
             IEnumerable<Games> games = await _gamesService.GetGames();
             IEnumerable <GamesDTO> gamesDTO =
@@ -107,7 +108,7 @@ namespace Basic_Games_Shelf.WebApi.Controllers
 
         // GET: api/Games/select_top_by_playtime?genre=FPS&platform=PC
         [HttpGet("select_top_by_playtime")]
-        public async Task<ActionResult<Games>> GetTopPlayedGamesByPlayTime([BindRequired] string genre, [BindRequired] string platform)
+        public async Task<ActionResult<IEnumerable<GamesResponse>>> GetTopPlayedGamesByPlayTime([BindRequired] string genre, [BindRequired] string platform)
         {
             var games = await _context.Games.ToListAsync();
             var gamesfiltred = games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
@@ -130,7 +131,7 @@ namespace Basic_Games_Shelf.WebApi.Controllers
 
         // GET: api/Games/select_top_by_players?genre=FPS&platform=PC
         [HttpGet("select_top_by_players")]
-        public async Task<ActionResult<Games>> GetTopPlayedGameByUsers([BindRequired] string genre, [BindRequired] string platform)
+        public async Task<ActionResult<IEnumerable<GamesResponse>>> GetTopPlayedGameByUsers([BindRequired] string genre, [BindRequired] string platform)
         {
             var mostPlayedGames= await _gamesService.GetTopPlayedGameByUsers(genre, platform);
 
