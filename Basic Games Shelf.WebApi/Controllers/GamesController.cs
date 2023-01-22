@@ -110,23 +110,15 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpGet("select_top_by_playtime")]
         public async Task<ActionResult<IEnumerable<GamesResponse>>> GetTopPlayedGamesByPlayTime([BindRequired] string genre, [BindRequired] string platform)
         {
-            var games = await _context.Games.ToListAsync();
-            var gamesfiltred = games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
-            var gameGroupByGameName = gamesfiltred.GroupBy(i => i.Game.ToLower());
-            var gameReduce = gameGroupByGameName.Select(s => new
-            {
-                game = s.Key,
-                totalPlayed = s.Sum(w => w.PlayTime)
-            });
+           
+            var gamesPlayedHaveSameTotalPlayed= await _gamesService.GetTopPlayedGameByUsers(genre, platform);
 
-
-
-            if (gameReduce == null)
+            if (gamesPlayedHaveSameTotalPlayed == null)
             {
                 return NotFound();
             }
 
-            return Ok(gameReduce.MaxBy(g => g.totalPlayed));
+            return Ok(gamesPlayedHaveSameTotalPlayed);
         }
 
         // GET: api/Games/select_top_by_players?genre=FPS&platform=PC

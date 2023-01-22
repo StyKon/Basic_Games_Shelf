@@ -113,9 +113,30 @@ namespace Basic_Games_Shelf.DATA.Services
             return FoundedGames;
         }
 
-        public Task<IEnumerable<GamesResponse>> GetTopPlayedGamesByPlayTime(string genre, string platform)
+        public async Task<IEnumerable<GamesResponse>> GetTopPlayedGamesByPlayTime(string genre, string platform)
         {
-            throw new NotImplementedException();
+            var games = await _context.Games.ToListAsync();
+            var gamesfiltred = games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
+            var gameGroupByGameName = gamesfiltred.GroupBy(i => i.Game.ToLower());
+            var gameReduce = gameGroupByGameName.Select(g => new
+            {
+                Game = g.Key,
+                Genre = genre,
+                Platforms = g.Select(p => p.Platforms).First(),
+                TotalPlayTime = g.Sum(w => w.PlayTime),
+                TotalPlayers = g.Count(),
+            });
+            var maxGamePlayed = gameReduce.MaxBy(g => g.TotalPlayTime);
+            var gamesPlayedHaveSameTotalPlayed = gameReduce.Where(x => x.TotalPlayTime == maxGamePlayed.TotalPlayTime);
+            IEnumerable<GamesResponse> gamesResponse = gamesPlayedHaveSameTotalPlayed.Select(x => new GamesResponse
+            {
+                Game = x.Game,
+                Genre = x.Genre,
+                Platforms = x.Platforms,
+                TotalPlayers = x.TotalPlayers,
+                TotalPlayTime = x.TotalPlayTime,
+            });
+            return gamesResponse;
         }
 
         public async Task<IEnumerable<GamesResponse>> GetTopPlayedGameByUsers(string genre, string platform)
