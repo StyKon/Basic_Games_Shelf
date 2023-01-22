@@ -35,11 +35,6 @@ namespace Basic_Games_Shelf.DATA.Services
         {
             var games = await _context.Games.FindAsync(id);
 
-            if (games == null)
-            {
-                return games;
-            }
-
             return games;
         }
 
@@ -58,10 +53,6 @@ namespace Basic_Games_Shelf.DATA.Services
 
         public async Task<Games> PutGames(int id, Games games)
         {
-            if (id != games.Id)
-            {
-                return games;
-            }
             _context.Entry(games).State = EntityState.Modified;
 
             try
@@ -70,14 +61,7 @@ namespace Basic_Games_Shelf.DATA.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GamesExists(id))
-                {
-                    return games;
-                }
-                else
-                {
                     throw;
-                }
             }
 
             return games;

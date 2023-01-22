@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Basic_Games_Shelf.DOMAINE;
 using Basic_Games_Shelf.DATA;
 using Basic_Games_Shelf.DATA.IServices;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Basic_Games_Shelf.WebApi.Controllers
 {
@@ -35,7 +36,12 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Games>> GetGames(int id)
         {
-            return Ok(await _gamesService.GetGames(id));
+            var games = await _gamesService.GetGames(id);
+            if (games == null)
+            {
+                return NotFound();
+            }
+            return games;
         }
 
         // PUT: api/Games/5
@@ -43,6 +49,14 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGames(int id, Games games)
         {
+            if (id != games.Id)
+            {
+                return BadRequest();
+            }
+            if (!GamesExists(id))
+            {
+                return NotFound();
+            }
             return Ok(await _gamesService.PutGames(id, games));
         }
 
@@ -62,9 +76,59 @@ namespace Basic_Games_Shelf.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGames(int id)
         {
-            return Ok(await _gamesService.DeleteGames(id));
+            var games = await _gamesService.DeleteGames(id);
+            if (games == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
+        // GET: api/Games/select_top_by_playtime?genre=FPS&platform=PC
+        [HttpGet("select_top_by_playtime")]
+        public async Task<ActionResult<Games>> GetTopPlayedGamesByPlayTime([BindRequired] string genre, [BindRequired] string platform)
+        {
+            var games = await _context.Games.ToListAsync();
+            var gamesfiltred = games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
+            var gameGroupByGameName = gamesfiltred.GroupBy(i => i.Game.ToLower());
+            var gameReduce = gameGroupByGameName.Select(s => new
+            {
+                game = s.Key,
+                totalPlayed = s.Sum(w => w.PlayTime)
+            });
+
+
+
+            if (gameReduce == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(gameReduce.MaxBy(g => g.totalPlayed));
+        }
+
+        // GET: api/Games/select_top_by_players?genre=FPS&platform=PC
+        [HttpGet("select_top_by_players")]
+        public async Task<ActionResult<Games>> GetTopPlayedGameByUsers([BindRequired] string genre, [BindRequired] string platform)
+        {
+            var games = await _context.Games.ToListAsync();
+            var gamesFiltred = games.Where(x => x.Genre.ToLower() == genre.ToLower() && x.Platforms.Contains(platform));
+            var gameGroupByGameName = gamesFiltred.GroupBy(i => i.Game.ToLower());
+
+
+            var gameusers = gameGroupByGameName.Select(g => new { name = g.Key, count = g.Count() }); ;
+            var maxUsers = gameusers.MaxBy(u => u.count);
+            var mostPlayedGames = gameusers.Where(s => s.count == maxUsers.count).ToList();
+
+
+
+            if (mostPlayedGames == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mostPlayedGames);
+        }
         private bool GamesExists(int id)
         {
             return _gamesService.GamesExists(id);
