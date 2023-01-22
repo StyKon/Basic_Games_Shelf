@@ -11,8 +11,8 @@ namespace Basic_Games_Shelf.DATA.IServices
     {
         Task<IEnumerable<Games>> GetGames();
         Task<Games> GetGames(int id);
-        Task<Games> PutGames(int id, Games games);
-        Task<Games> PostGames(Games games);
+        Task<GamesResult> PutGames(int id, Games games);
+        Task<GamesResult> PostGames(Games games);
         Task<Games> DeleteGames(int id);
         bool GamesExists(int id);
     }

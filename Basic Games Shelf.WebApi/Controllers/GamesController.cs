@@ -57,19 +57,26 @@ namespace Basic_Games_Shelf.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(await _gamesService.PutGames(id, games));
+            GamesResult gamesResult = await _gamesService.PutGames(id, games);
+            if(gamesResult.Message== "Games Updated Successfully")
+            {
+                return NoContent();
+            }
+            return BadRequest();
         }
 
         // POST: api/Games
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IEnumerable<Games>> PostGames([FromBody] IEnumerable<Games> games)
+        public async Task<ActionResult<Games>> PostGames(Games games)
         {
-            foreach (var game in games)
+           
+            GamesResult gamesResult = await _gamesService.PostGames(games);
+            if(gamesResult.Message != "Games Added Successfully")
             {
-                await _gamesService.PostGames(game);
+                return BadRequest(gamesResult.Message);
             }
-            return (IEnumerable<Games>)Ok(games);
+            return CreatedAtAction("GetGames", new { id = games.Id }, games);
         }
 
         // DELETE: api/Games/5

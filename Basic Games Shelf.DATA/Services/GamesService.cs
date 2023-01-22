@@ -43,15 +43,36 @@ namespace Basic_Games_Shelf.DATA.Services
             return await _context.Games.ToListAsync();
         }
 
-        public async Task<Games> PostGames(Games games)
+        public async Task<GamesResult> PostGames(Games games)
         {
-            _context.Games.Add(games);
-            await _context.SaveChangesAsync();
+            bool ValidInput = true;
+            GamesResult gameResult = new GamesResult();
+            if (GamesNameExist(games))
+            {
+                ValidInput=PlatformsAreTheSame(games);
+                gameResult.Message = "You Cannot Add this game with different platforms";
+                if (ValidInput)
+                {
+                    ValidInput = !UserAlreadyPlayingTheGame(games);
+                    gameResult.Message = "You Cannot Add User that Already Playing This Game";
+                }
+            }
+            if (ValidInput)
+            {
+                _context.Games.Add(games);
+                await _context.SaveChangesAsync();
+                gameResult.Games=games;
+                gameResult.Message = "Games Added Successfully";
+                return gameResult;
+            }
+            gameResult.Games = null;
 
-            return games;
+            return gameResult;
         }
 
-        public async Task<Games> PutGames(int id, Games games)
+       
+
+        public async Task<GamesResult> PutGames(int id, Games games)
         {
             _context.Entry(games).State = EntityState.Modified;
 
@@ -63,8 +84,31 @@ namespace Basic_Games_Shelf.DATA.Services
             {
                     throw;
             }
+            GamesResult gameResult = new GamesResult()
+            {
+                Games = games,
+                Message = "Games Updated Successfully"
+            };
+            return gameResult;
+        }
+        private bool UserAlreadyPlayingTheGame(Games games)
+        {
+            bool FoundedUserPlaying = _context.Games.Where(g => g.UserId == games.UserId && g.Game.ToLower() == games.Game.ToLower()).Any();
 
-            return games;
+            return FoundedUserPlaying;
+        }
+
+        private bool PlatformsAreTheSame(Games games)
+        {
+            Games FoundedGames = _context.Games.Where(g => g.Game.ToLower() == games.Game.ToLower()).FirstOrDefault();
+            bool arraysAreEqual = Enumerable.SequenceEqual(games.Platforms, FoundedGames.Platforms);
+            return arraysAreEqual;
+        }
+
+        private bool GamesNameExist(Games games)
+        {
+            bool FoundedGames = _context.Games.Where(g => g.Game.ToLower() == games.Game.ToLower()).Any();
+            return FoundedGames;
         }
     }
 }
