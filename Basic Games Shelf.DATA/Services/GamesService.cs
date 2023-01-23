@@ -33,7 +33,7 @@ namespace Basic_Games_Shelf.DATA.Services
             return _context.Games.Any(e => e.Id == id);
         }
 
-        public async Task<Games?> GetGames(int id)
+        public async Task<Games> GetGames(int id)
         {
             var games = await _context.Games.FindAsync(id);
 

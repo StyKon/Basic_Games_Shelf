@@ -9,6 +9,7 @@ namespace Basic_Games_Shelf.DOMAINE
         [Key]
         public int Id { get; set; }
         [Required]
+        [MinValueAttribute(1)]
         public int UserId { get; set; }
         [Required]
         public string Game { get; set; }
