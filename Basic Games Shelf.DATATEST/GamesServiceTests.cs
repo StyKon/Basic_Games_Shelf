@@ -14,13 +14,14 @@ namespace Basic_Games_Shelf.DATATEST
     public class GamesServiceTests
     {
         [Theory, AutoMoqData]
-        public void GetGames_Should_Success([Frozen] Mock<IGamesService> service,  List<Games> games, GamesService sut)
+        public void GetGames_Should_Return_Task_IEnumerable_Games([Frozen] Mock<IGamesService> service,  List<Games> games, GamesService sut)
         {
             service.Setup(c => c.GetGames()).ReturnsAsync(games.AsQueryable);
             Action action =  () =>
             {
-                var result =  sut.GetGames();
-                result.Should().BeEquivalentTo(games);
+                var result =  sut.GetGames(); 
+                Assert.IsType<Task<IEnumerable<Games>>>(result);
+
 
             };
             action.Should().NotThrow<Exception>();

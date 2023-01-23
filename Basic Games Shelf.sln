@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic Games Shelf.DATATEST"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic Games Shelf.WebApi", "Basic Games Shelf.WebApi\Basic Games Shelf.WebApi.csproj", "{E1C2E1C1-1733-42F8-B11A-462BA00B16DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic Games Shelf.WebApiTEST", "Basic Games Shelf.WebApiTEST\Basic Games Shelf.WebApiTEST.csproj", "{06421BE1-DEFC-4487-9982-0F60B9E3E32E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{E1C2E1C1-1733-42F8-B11A-462BA00B16DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1C2E1C1-1733-42F8-B11A-462BA00B16DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1C2E1C1-1733-42F8-B11A-462BA00B16DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06421BE1-DEFC-4487-9982-0F60B9E3E32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06421BE1-DEFC-4487-9982-0F60B9E3E32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06421BE1-DEFC-4487-9982-0F60B9E3E32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06421BE1-DEFC-4487-9982-0F60B9E3E32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{16D247BF-6E55-40FA-9B11-710D0E7542B6} = {3D31CEE4-F5B0-4FF3-9CB1-C6AF2AE6D631}
 		{6D0B8F05-367C-456F-BBF8-100882F68549} = {3D31CEE4-F5B0-4FF3-9CB1-C6AF2AE6D631}
 		{E1C2E1C1-1733-42F8-B11A-462BA00B16DB} = {6CC1D61F-1E90-453B-9E45-4AE6278BFF3B}
+		{06421BE1-DEFC-4487-9982-0F60B9E3E32E} = {6CC1D61F-1E90-453B-9E45-4AE6278BFF3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C66CD3FF-910B-46C1-8BCA-60C0F094ADBE}
