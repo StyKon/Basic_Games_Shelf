@@ -63,7 +63,42 @@ PUT: BaseUrl/api/Games/{id} => update game with specefic id
 
 POST: BaseUrl/api/Games =>  add single game 
 
-POST: BaseUrl/api/Games/AddMultipleGames =>  multiple games
+POST: BaseUrl/api/Games/AddMultipleGames =>  adding multiple games you can use json file
+
+Example :
+
+```json
+   [
+    {
+      "userId": 8,
+      "game": "League of legends",
+      "playTime": 500,
+      "genre": "MOBA",
+      "platforms": ["PC"]
+    },
+    {
+      "userId": 7,
+      "game": "World of warcraft",
+      "playTime": 1500,
+      "genre": "MMORPG",
+      "platforms": ["PC"]
+    },
+    {
+      "userId": 88,
+      "game": "Dark Souls",
+      "playTime": 109,
+      "genre": "Action RPG",
+      "platforms": [
+        "PS3",
+        "Xbox 360",
+        "PC",
+        "PS4",
+        "Xbox One",
+        "Nintendo Switch"
+      ]
+    },
+   ]
+```
 
 DELETE: BaseUrl/api/Games/{id} => delete game 
 
