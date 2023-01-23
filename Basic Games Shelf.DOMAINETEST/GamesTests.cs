@@ -34,6 +34,13 @@ namespace Basic_Games_Shelf.DOMAINETEST
             var listErrors = ValidateModel(games);
             Assert.False(listErrors.Count() == 0);
         }
+        [Theory, AutoMoqData]
+        public void Create_Games_Should_Success(Games game)
+        {
+            Games games = new Games { UserId = game.UserId, Game = game.Game, PlayTime = game.PlayTime, Genre = game.Genre, Platforms = game.Platforms };
+            var listErrors = ValidateModel(games);
+            Assert.True(listErrors.Count() == 0);
+        }
         private IList<ValidationResult> ValidateModel(object model)
         {
             var validationResults = new List<ValidationResult>();
