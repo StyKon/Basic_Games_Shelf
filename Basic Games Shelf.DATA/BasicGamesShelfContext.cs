@@ -21,6 +21,12 @@ namespace Basic_Games_Shelf.DATA
                 v => string.Join(',', v),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
         }
+
+        public void SaveChangesAsync(Games games)
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<Basic_Games_Shelf.DOMAINE.Games> Games { get; set; } = default!;
     }
 }

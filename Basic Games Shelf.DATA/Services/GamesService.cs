@@ -116,19 +116,45 @@ namespace Basic_Games_Shelf.DATA.Services
         public async Task<IEnumerable<GamesResponse>> GetTopPlayedGamesByPlayTime(string genre, string platform)
         {
             var games = await _context.Games.ToListAsync();
-            var gamesfiltred = games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
-            var gameGroupByGameName = gamesfiltred.GroupBy(i => i.Game.ToLower());
-            var gameReduce = gameGroupByGameName.Select(g => new
+
+            IEnumerable<Games> gamesFiltred = FilterGamesByGenreAndPlatform(games, genre, platform);
+            if (!gamesFiltred.Any())
             {
-                Game = g.Key,
-                Genre = genre,
-                Platforms = g.Select(p => p.Platforms).First(),
-                TotalPlayTime = g.Sum(w => w.PlayTime),
-                TotalPlayers = g.Count(),
-            });
-            var maxGamePlayed = gameReduce.MaxBy(g => g.TotalPlayTime);
-            var gamesPlayedHaveSameTotalPlayed = gameReduce.Where(x => x.TotalPlayTime == maxGamePlayed.TotalPlayTime);
-            IEnumerable<GamesResponse> gamesResponse = gamesPlayedHaveSameTotalPlayed.Select(x => new GamesResponse
+                return null;
+            }
+            IEnumerable<GamesResponse> gamesGroupedByNames = GroupGamesByNamesAndReturnItAsListOfGameResponse(gamesFiltred, genre);
+
+            int maxGamePlayedTime = gamesGroupedByNames.MaxBy(g => g.TotalPlayTime).TotalPlayTime;
+
+            IEnumerable<GamesResponse> gamesResponse = SelectedGamesResultWithMaxTotalPlaytimeList(maxGamePlayedTime, gamesGroupedByNames);
+
+            return gamesResponse;
+        }
+
+
+
+        public async Task<IEnumerable<GamesResponse>> GetTopPlayedGameByUsers(string genre, string platform)
+        {
+            var games = await _context.Games.ToListAsync();
+            IEnumerable<Games> gamesFiltred = FilterGamesByGenreAndPlatform(games, genre, platform);
+            if (!gamesFiltred.Any())
+            {
+                return null;
+            }
+            IEnumerable<GamesResponse> gamesGroupedByNames = GroupGamesByNamesAndReturnItAsListOfGameResponse(gamesFiltred, genre);
+
+            int maxGamePlayers = gamesGroupedByNames.MaxBy(u => u.TotalPlayers).TotalPlayers;
+
+            IEnumerable<GamesResponse> gamesResponse = SelectedGamesResultWithMaxTotalPlayersList(maxGamePlayers, gamesGroupedByNames);
+
+            return gamesResponse;
+
+
+        }
+
+        private IEnumerable<GamesResponse> SelectedGamesResultWithMaxTotalPlayersList(int maxGamePlayers, IEnumerable<GamesResponse> gamesGroupedByNames)
+        {
+            IEnumerable<GamesResponse> gamesResponse = gamesGroupedByNames.Where(s => s.TotalPlayers == maxGamePlayers).Select(x => new GamesResponse
             {
                 Game = x.Game,
                 Genre = x.Genre,
@@ -139,24 +165,9 @@ namespace Basic_Games_Shelf.DATA.Services
             return gamesResponse;
         }
 
-        public async Task<IEnumerable<GamesResponse>> GetTopPlayedGameByUsers(string genre, string platform)
+        private IEnumerable<GamesResponse> SelectedGamesResultWithMaxTotalPlaytimeList(int maxGamePlayedTime, IEnumerable<GamesResponse> gamesGroupedByNames)
         {
-            var games = await _context.Games.ToListAsync();
-            var gamesFiltred = games.Where(x => x.Genre.ToLower() == genre.ToLower() && x.Platforms.Contains(platform));
-            var gameGroupByGameName = gamesFiltred.GroupBy(i => i.Game.ToLower());
-
-
-            var gameusers = gameGroupByGameName.Select(g => new
-            {
-                Game = g.Key,
-                Genre = genre,
-                Platforms = g.Select(p => p.Platforms).First(),
-                TotalPlayTime = g.Sum(w => w.PlayTime),
-                TotalPlayers = g.Count(),
-            });
-            var maxUsers = gameusers.MaxBy(u => u.TotalPlayers);
-            var mostPlayedGames = gameusers.Where(s => s.TotalPlayers == maxUsers.TotalPlayers).ToList();
-            IEnumerable<GamesResponse> gamesResponse = mostPlayedGames.Select(x => new GamesResponse
+            IEnumerable<GamesResponse> gamesResponse = gamesGroupedByNames.Where(x => x.TotalPlayTime == maxGamePlayedTime).Select(x => new GamesResponse
             {
                 Game = x.Game,
                 Genre = x.Genre,
@@ -165,8 +176,23 @@ namespace Basic_Games_Shelf.DATA.Services
                 TotalPlayTime = x.TotalPlayTime,
             });
             return gamesResponse;
+        }
 
+        private IEnumerable<GamesResponse> GroupGamesByNamesAndReturnItAsListOfGameResponse(IEnumerable<Games> gamesfiltred, string genre)
+        {
+            return gamesfiltred.GroupBy(i => i.Game.ToLower()).Select(g => new GamesResponse
+            {
+                Game = g.Key,
+                Genre = genre,
+                Platforms = g.Select(p => p.Platforms).First(),
+                TotalPlayTime = g.Sum(w => w.PlayTime),
+                TotalPlayers = g.Count(),
+            });
+        }
 
+        private IEnumerable<Games> FilterGamesByGenreAndPlatform(List<Games> games, string genre, string platform)
+        {
+            return games.Where(x => (x.Genre.ToLower() == genre.ToLower()) && (x.Platforms.Contains(platform)));
         }
     }
 }

@@ -13,5 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Basic Games Shelf.DOMAINE\Basic Games Shelf.DOMAINE.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Response\" />
+  </ItemGroup>
 
 </Project>
