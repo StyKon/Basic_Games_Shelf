@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Basic_Games_Shelf.DOMAINE;
-using Basic_Games_Shelf.DATA;
 using Basic_Games_Shelf.DATA.IServices;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Basic_Games_Shelf.DATA.Result;
@@ -15,12 +13,10 @@ namespace Basic_Games_Shelf.WebApi.Controllers
     public class GamesController : ControllerBase
     {
         private readonly IGamesService _gamesService;
-        private readonly BasicGamesShelfContext _context;
 
-        public GamesController(IGamesService gamesService, BasicGamesShelfContext _context)
+        public GamesController(IGamesService gamesService)
         {
             _gamesService = gamesService;
-            this._context = _context;
         }
 
         // GET: api/Games

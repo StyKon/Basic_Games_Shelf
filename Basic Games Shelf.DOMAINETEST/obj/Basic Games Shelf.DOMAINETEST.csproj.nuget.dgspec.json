@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\Basic Games Shelf.DOMAINE.csproj": {
+                "projectPath": "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\Basic Games Shelf.DOMAINE.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -44,23 +48,93 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "MSTest.TestAdapter": {
+            "AutoFixture.AutoMoq": {
               "target": "Package",
-              "version": "[2.2.7, )"
+              "version": "[4.5.0, )"
             },
-            "MSTest.TestFramework": {
+            "AutoFixture.Xunit2": {
               "target": "Package",
-              "version": "[2.2.7, )"
+              "version": "[4.5.0, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[5.4.1, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.11.0, )"
+              "version": "[15.8.0, )"
             },
-            "coverlet.collector": {
+            "Moq": {
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[4.9.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\Basic Games Shelf.DOMAINE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\Basic Games Shelf.DOMAINE.csproj",
+        "projectName": "Basic Games Shelf.DOMAINE",
+        "projectPath": "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\Basic Games Shelf.DOMAINE.csproj",
+        "packagesPath": "C:\\Users\\StyKon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\StyKon\\source\\repos\\Clean\\Basic Games Shelf\\Basic Games Shelf.DOMAINE\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\StyKon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
